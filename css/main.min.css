@@ -1,0 +1,510 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: "Space Grotesk";
+    font-display: fallback;
+    font-style: normal;
+    font-weight: 400;
+    src: local("SpaceGrotesk-Regular"), url("../fonts/SpaceGrotesk-Regular.woff") format("woff"), url("../fonts/SpaceGrotesk-Regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Space Grotesk";
+    font-display: fallback;
+    font-style: normal;
+    font-weight: bold;
+    src: local("SpaceGrotesk-Bold"), url("../fonts/SpaceGrotesk-Bold.woff") format("woff"), url("../fonts/SpaceGrotesk-Bold.woff2") format("woff2");
+}
+
+@keyframes aurora {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    100% {
+        rotate: 360deg;
+    }
+}
+
+@keyframes dash {
+    0% {
+        stroke-dasharray: 1, 150;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -35;
+    }
+    100% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -125;
+    }
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+::-moz-selection {
+    background: #4682B4;
+    text-shadow: none;
+}
+
+::selection {
+    background: #4682B4;
+    text-shadow: none;
+}
+
+input:not(:focus):not(:placeholder-shown):invalid {
+    border: 2px solid #E94434;
+}
+
+input:not(:focus):not(:placeholder-shown):valid  {
+    border: 2px solid #198754;
+}
+
+button[disabled], input[disabled] {
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.5
+}
+
+body.hovered .main__button:hover {
+    animation: aurora 1.5s linear infinite;
+    border-color: #ecc513;
+    box-shadow: 0 0 8px #19f0da, 0 0 16px #fde82e, 0 0 8px #e702cd inset;
+}
+
+body.hovered .main__tools a:hover {
+    animation: aurora 1.5s linear infinite;
+    border: 2px solid #ecc513;
+}
+
+body.hovered .menu__item:hover {
+    animation: aurora 1.5s linear infinite;
+    background: linear-gradient(#19f0da, #fde82e, #e702cd);
+}
+
+#loader {
+    height: 48px;
+    width: 48px;
+    animation: spin 1s linear infinite;
+}
+
+#loader>circle {
+    fill: none;
+    stroke: #ecc513;
+    stroke-width: 3px;
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+}
+
+.main__wrapper {
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 700px;
+}
+
+.main__message {
+    color: #e4e4e4;
+    font-size: 2.2rem;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.main__field,
+.main__btn {
+    margin: 0.5rem auto;
+    min-width: 700px;
+}
+
+.main__error {
+    position: absolute;
+    top: 70%;
+    background-color: #ea1a1a;
+    border: 2px ridge #e4e4e4;
+    border-radius: 16px;
+    color: #e4e4e4;
+    font-size: 0;
+    opacity: 0;
+    padding: 0.5rem 1rem;
+    width: 0;
+    transition: all 0.5s ease;
+}
+
+.main__error.active {
+    font-size: 1.2rem;
+    opacity: 1;
+    width: 60%;
+}
+
+.main__list {
+    list-style: none;
+    margin: 16px auto;
+    width: 100%;
+}
+
+.main__list li {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+    margin: 16px 0;
+    padding: 0.5rem 1rem;
+}
+
+.main__list li span:last-child {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.main__list li span:last-child span {
+    margin-bottom: 0;
+}
+
+.main__list .list__link {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 14px;
+    align-items: center;
+}
+
+.main__list .list__link .link__long {
+    display: inline-block;
+    max-width: 300px;
+    word-wrap: break-word;
+    color: #c3423f;
+    overflow: hidden;
+    text-decoration: line-through;
+}
+
+.main__list .list__link .link__short {
+    display: inline-block;
+    max-width: 200px;
+    word-wrap: break-word;
+    color: #2bc016;
+    overflow: hidden;
+    font-weight: bold;
+}
+
+.main__list .list__link button {
+    flex-grow: 0.1;
+    margin-bottom: 0;
+}
+
+.main__button {
+    background: rgba(0, 0, 0, 0.4);
+    border: 4px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgb(255, 255, 255), 0 0 16px rgb(255, 255, 255), 0 0 8px rgb(255, 255, 255) inset;
+    cursor: pointer;
+    height: 128px;
+    width: 128px;
+    margin: 0 auto;
+    position: relative;
+    transition: all 0.5s ease-in-out;
+    z-index: 2;
+}
+
+.main__button span,
+.main__button span::before,
+.main__button span::after {
+    content: "";
+    background: rgba(255, 255, 255, 0.8);
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 48px;
+    transform: translate(72%, 60px);
+    transition: all 0.5s ease-in-out;
+}
+
+.main__button span::before {
+    transform: translateY(-15px);
+}
+
+.main__button span::after {
+    transform: translateY(15px);
+}
+
+.main__tools {
+    position: relative;
+    top: -20px;
+    left: -50%;
+    list-style: none;
+    height: 100%;
+    width: 100%;
+}
+
+.main__tools li {
+    position: absolute;
+    transform: rotate(360deg);
+    transition: all 0.5s ease-in-out;
+}
+
+.main__tools a {
+    border-radius: 50%;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease-in-out;
+}
+
+.lnr:before {
+    font-size: 2rem;
+}
+
+.typetest {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    padding: 24px;
+    margin-top: 48px;
+    min-width: 700px;
+}
+
+.typetest__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+}
+
+.typetest__lang {
+    position: relative;
+    display: inline-block;
+}
+
+.typetest__lang select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    outline: none;
+    color: #e4e4e4;
+    font-size: 1.5rem;
+    height: 36px;
+    width: 135px;
+    padding: 4px 16px;
+}
+
+.typetest__lang select:focus {
+    border: 1px solid rgb(64, 101, 240);
+}
+
+.typetest__lang select option {
+    background: #0a0a0a;
+}
+
+.typetest__lang::after {
+    content: "🢓";
+    color: #e4e4e4;
+    position: absolute;
+    top: 25%;
+    right: 10%;
+    pointer-events: none;
+}
+
+.typetest b {
+    color: #fff;
+}
+
+.typetest__title,
+.typetest__subtitle,
+.typetest__record,
+.typetest__current,
+.typetest__timer,
+.typetest__content {
+    color: #e4e4e4;
+}
+
+.typetest__timer,
+.typetest__current {
+    font-size: 2rem;
+}
+
+.typetest__content {
+    font-size: 1.2rem;
+    padding: 8px;
+    text-justify: justify;
+    text-shadow: 1px 1px 5px #e4e4e4;
+    text-wrap: balance;
+}
+
+.typetest__board {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.typetest__loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: radial-gradient(farthest-side, rgb(64, 101, 240) 94%, rgba(0, 0, 0, 0)) top/9px 9px no-repeat, conic-gradient(rgba(0, 0, 0, 0) 30%, rgb(64, 101, 240));
+    -webkit-mask: radial-gradient(farthest-side, rgba(0, 0, 0, 0) calc(100% - 9px), #000 0);
+    mask: radial-gradient(farthest-side, rgba(0, 0, 0, 0) calc(100% - 9px), #000 0);
+    animation: spin 1s infinite linear;
+}
+
+.typetest textarea {
+    width: 100%;
+    background: transparent;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    outline: none;
+    color: #fff;
+    margin-bottom: 0;
+}
+
+.typetest textarea:focus {
+    border: 1px solid rgb(64, 101, 240);
+}
+
+.--open span {
+    background: transparent;
+}
+
+.--open span::before {
+    transform: rotate(135deg) !important;
+}
+
+.--open span::after {
+    transform: rotate(-135deg) !important;
+}
+
+.--active::-webkit-input-placeholder {
+    color: #ea1a1a;
+}
+
+.picker {
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 0 auto;
+    text-align: center;
+    width: 47%;
+}
+
+.picker a,
+.picker button {
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-block;
+    margin: 1rem;
+    width: 48px;
+    height: 48px;
+}
+
+.picker button[data-color=black] {
+    background: black;
+}
+
+.picker button[data-color=red] {
+    background: red;
+}
+
+.picker button[data-color=green] {
+    background: green;
+}
+
+.picker button[data-color=blue] {
+    background: blue;
+}
+
+.picker button[data-color=orange] {
+    background: orange;
+}
+
+.picker button[data-color=magenta] {
+    background: magenta;
+}
+
+.field {
+    text-align: center;
+}
+
+.field__canvas {
+    background-color: #fff;
+    border: 2px ridge #0a0a0a;
+    cursor: crosshair;
+}
+
+.taskbar {
+    margin: 0 auto;
+    width: 47%;
+}
+
+.taskbar a,
+.taskbar button {
+    background-color: #ccc;
+    border: 1px solid #ea1a1a;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: inline-block;
+    margin: 1rem;
+    text-transform: uppercase;
+    width: 50%;
+    height: 32px;
+}
+
+.taskbar__magnifier {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 30%;
+    height: 24px;
+    background: #ccc;
+    outline: none;
+    margin: 0;
+    transition: opacity 0.3s;
+}
+
+.taskbar__magnifier::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #ea1a1a;
+    cursor: pointer;
+}
+
+.taskbar__magnifier::-moz-slider-thumb {
+    width: 25px;
+    height: 25px;
+    background: #ea1a1a;
+    cursor: pointer;
+}
+
+.taskbar__output {
+    display: inline-block;
+    background-color: #ccc;
+    color: #0a0a0a;
+    font-size: 16px;
+    margin-right: 16px;
+    padding: 0 5px;
+}
+
+.glass {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
