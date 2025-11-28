@@ -263,90 +263,23 @@ body.hovered .menu__item:hover {
     font-size: 2rem;
 }
 
-.typetest {
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-    padding: 24px;
-    margin-top: 48px;
-    min-width: 700px;
-}
-
-.typetest__info {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    margin-bottom: 24px;
-    padding-bottom: 24px;
-}
-
-.typetest__lang {
-    position: relative;
-    display: inline-block;
-}
-
-.typetest__lang select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-    outline: none;
-    color: #e4e4e4;
-    font-size: 1.5rem;
-    height: 36px;
-    width: 135px;
-    padding: 4px 16px;
-}
-
-.typetest__lang select:focus {
-    border: 1px solid rgb(64, 101, 240);
-}
-
-.typetest__lang select option {
-    background: #0a0a0a;
-}
-
-.typetest__lang::after {
+#lang:after {
     content: "🢓";
     color: #e4e4e4;
     position: absolute;
-    top: 25%;
+    top: 30%;
     right: 10%;
     pointer-events: none;
 }
 
-.typetest b {
-    color: #fff;
-}
-
-.typetest__title,
-.typetest__subtitle,
-.typetest__record,
-.typetest__current,
-.typetest__timer,
 .typetest__content {
-    color: #e4e4e4;
-}
-
-.typetest__timer,
-.typetest__current {
-    font-size: 2rem;
-}
-
-.typetest__content {
-    font-size: 1.2rem;
-    padding: 8px;
     text-justify: justify;
     text-shadow: 1px 1px 5px #e4e4e4;
-    text-wrap: balance;
 }
 
-.typetest__board {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
+.typetest__button:hover {
+    scale: 1.2;
+    animation: spin 1.5s ease-in-out;
 }
 
 .typetest__loader {
@@ -360,21 +293,6 @@ body.hovered .menu__item:hover {
     -webkit-mask: radial-gradient(farthest-side, rgba(0, 0, 0, 0) calc(100% - 9px), #000 0);
     mask: radial-gradient(farthest-side, rgba(0, 0, 0, 0) calc(100% - 9px), #000 0);
     animation: spin 1s infinite linear;
-}
-
-.typetest textarea {
-    width: 100%;
-    background: transparent;
-    padding: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    outline: none;
-    color: #fff;
-    margin-bottom: 0;
-}
-
-.typetest textarea:focus {
-    border: 1px solid rgb(64, 101, 240);
 }
 
 .--open span {
