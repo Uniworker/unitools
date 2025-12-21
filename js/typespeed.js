@@ -3,9 +3,9 @@ const pick = root.querySelector.bind(root)
 const sc = pick('#sc').innerHTML = '60'
 const ms = pick('#ms').innerHTML = '000'
 var current = 0, record = 0, savedRandom = null, started = false
-var text = ["Everyone has the right to freedom of thought, conscience and religion; this right includes freedom to change his religion or belief, and freedom, either alone or in community with others and in public or private, to manifest his religion or belief in teaching, practice, worship and observance. Everyone has the right to freedom of opinion and expression; this right includes freedom to hold opinions without interference and to seek, receive and impart information and ideas through any media and regardless of frontiers. Everyone has the right to freedom of peaceful assembly and association. No one may be compelled to belong to an association.",
-"All human beings are born free and equal in dignity and rights. They are endowed with reason and conscience and should act towards one another in a spirit of brotherhood. Everyone is entitled to all the rights and freedoms set forth in this Declaration, without distinction of any kind, such as race, colour, sex, language, religion, political or other opinion, national or social origin, property, birth or other status. Furthermore, no distinction shall be made on the basis of the political, jurisdictional or international status of the country or territory to which a person belongs, whether it be independent, trust, non-self-governing or under any other limitation of sovereignty.",
-"Everyone, as a member of society, has the right to social security and is entitled to realization, through national effort and international co-operation and in accordance with the organization and resources of each State, of the economic, social and cultural rights indispensable for his dignity and the free development of his personality. Any person has the right to work, to free choice of employment, to just and favourable conditions of work and to protection against unemployment. Everybody has the right to rest and leisure, including reasonable limitation of working hours and periodic holidays with pay."
+var text = ["Агнец у вас должен быть без порока, мужеского пола, однолетний; возьмите его от овец, или от коз, и пусть он хранится у вас до четырнадцатого дня сего месяца: тогда пусть заколет его все собрание общества Израильского вечером, и пусть возьмут от крови его и помажут на обоих косяках и на перекладине дверей в домах, где будут есть его; пусть съедят мясо его в сию самую ночь, испеченное на огне; с пресным хлебом и с горькими травами пусть съедят его; не ешьте от него недопеченного, или сваренного в воде, но ешьте испеченное на огне, голову с ногами и внутренностями; не оставляйте от него до утра; но оставшееся от него до утра сожгите на огне.",
+"Ешьте же его так: пусть будут чресла ваши препоясаны, обувь ваша на ногах ваших и посохи ваши в руках ваших, и ешьте его с поспешностью: это - Пасха Господня. А Я в сию самую ночь пройду по земле Египетской и поражу всякого первенца в земле Египетской, от человека до скота, и над всеми богами Египетскими произведу суд. Я Господь. И будет у вас кровь знамением на домах, где вы находитесь, и увижу кровь и пройду мимо вас, и не будет между вами язвы губительной, когда буду поражать землю Египетскую. И да будет вам день сей памятен, и празднуйте в оный праздник Господу во все роды ваши; как установление вечное празднуйте его.",
+"Семь дней ешьте пресный хлеб; с самого первого дня уничтожьте квасное в домах ваших, ибо кто будет есть квасное с первого дня до седьмого дня, душа та истреблена будет из среды Израиля. И в первый день да будет у вас священное собрание, и в седьмой день священное собрание: никакой работы не должно делать в них; только что есть каждому, одно то можно делать вам. Наблюдайте опресноки, ибо в сей самый день Я вывел ополчения ваши из земли Египетской, и наблюдайте день сей в роды ваши, как установление вечное. С четырнадцатого дня первого месяца, с вечера ешьте пресный хлеб до вечера двадцать первого дня того же месяца."
 ]
 const settings = {
     "particles": {
@@ -115,7 +115,7 @@ const settings = {
     },
     "retina_detect": true
 }
-window.onload = function() {
+window.onload = function () {
     showParticles(settings)
     pick('#current').innerHTML = current
     pick('#record').innerHTML = record
@@ -149,7 +149,7 @@ function showParticles(settings) {
     return particlesJS('particles', settings)
 }
 function getRandom(elem) {
-    if(savedRandom === null) {
+    if (savedRandom === null) {
         savedRandom = Math.floor(Math.random() * elem.length)
     }
     return savedRandom
@@ -163,36 +163,36 @@ function runApp(t) {
     return t
 }
 function resetAll() {
-  setTimeout(() => {
-    started = false
-    pick('#refresh').disabled = false
-    pick('#text').value = ''
-    pick('#sc').innerHTML = '60'
-    pick('#ms').innerHTML = '000'
-    pick('#current').innerHTML = '0'
-    pick('#record').innerHTML = record
-    pick('#loader').remove()
-    pick('#panel').style.cssText = 'background: transparent; opacity: 1; transition: all 0.5s linear'
-  }, 2000)
-  pick('#panel').style.cssText = 'background: rgba(0, 0, 0, 0.7); opacity: 0.3; transition: all 0.5s linear'
-  let div = document.createElement('div')
-  div.className = 'typetest__loader'
-  div.id = 'loader'
-  document.documentElement.append(div)
+    setTimeout(() => {
+        started = false
+        pick('#refresh').disabled = false
+        pick('#text').value = ''
+        pick('#sc').innerHTML = '60'
+        pick('#ms').innerHTML = '000'
+        pick('#current').innerHTML = '0'
+        pick('#record').innerHTML = record
+        pick('#loader').remove()
+        pick('#panel').style.cssText = 'background: transparent; opacity: 1; transition: all 0.5s linear'
+    }, 2000)
+    pick('#panel').style.cssText = 'background: rgba(0, 0, 0, 0.7); opacity: 0.3; transition: all 0.5s linear'
+    let div = document.createElement('div')
+    div.className = 'typetest__loader'
+    div.id = 'loader'
+    document.documentElement.append(div)
 }
 function runTimer(t = 60) {
-  const miliseconds = 1000
-  var seconds = t * miliseconds
-  const step = 60
-  var tick = setInterval(() => {
-    seconds -= step
-    const remaining_sc = Math.floor(seconds / miliseconds)
-    const remaining_ms = seconds % miliseconds
-    pick('#ms').innerHTML = remaining_ms
-    pick('#sc').innerHTML = remaining_sc
-    if (seconds <= 0) {
-      resetAll()
-      clearInterval(tick)
-    }
-  }, step)
+    const miliseconds = 1000
+    var seconds = t * miliseconds
+    const step = 60
+    var tick = setInterval(() => {
+        seconds -= step
+        const remaining_sc = Math.floor(seconds / miliseconds)
+        const remaining_ms = seconds % miliseconds
+        pick('#ms').innerHTML = remaining_ms
+        pick('#sc').innerHTML = remaining_sc
+        if (seconds <= 0) {
+            resetAll()
+            clearInterval(tick)
+        }
+    }, step)
 }
