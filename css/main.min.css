@@ -329,8 +329,8 @@ body.hovered .menu__item:hover {
     height: 48px;
 }
 
-.picker button[data-color=black] {
-    background: black;
+.picker button[data-color=white] {
+    background: white;
 }
 
 .picker button[data-color=red] {
@@ -358,7 +358,7 @@ body.hovered .menu__item:hover {
 }
 
 .field__canvas {
-    background-color: #fff;
+    background-color: transparent;
     border: 2px ridge #0a0a0a;
     cursor: crosshair;
 }
