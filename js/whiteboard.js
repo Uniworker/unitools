@@ -4,21 +4,21 @@ var touches = [];
 var cc = [];
 var painter = 0;
 var canvas = 0;
-var color = 'black';
+var color = 'white';
 var colors = 0;
 var isPressed = false;
-var viewport = 0;
+//var viewport = 0;
 var t0,
   t1 = 0;
 window.onload = function (e) {
   showParticles(settings)
   t0 = performance.now();
   colors = document.querySelectorAll('button[data-color]');
-  colors[0].style.boxShadow = "0 0 4px 6px ".concat(color);
+  colors[0].style.boxShadow = "0 0 2px 4px ".concat(color);
   document.addEventListener('click', function (e) {
     if (e.target.hasAttribute('data-color')) {
       colors[0].style.boxShadow = 'none';
-      e.target.style.boxShadow = "0 0 4px 6px ".concat(e.target.dataset.color);
+      e.target.style.boxShadow = "0 0 2px 4px ".concat(e.target.dataset.color);
       color = e.target.dataset.color;
       cc.push(color);
       for (var i = 0; i < colors.length; i++) {
@@ -29,25 +29,16 @@ window.onload = function (e) {
     }
     if (e.target.closest('#cleaner')) painter.clearRect(0, 0, canvas.width, canvas.height);
   });
-  document.getElementById('magnifier').addEventListener('change', function (e) {
-    document.getElementById('range-output').innerHTML = e.currentTarget.value;
-    painter.lineWidth = e.currentTarget.value;
-  });
-  document.getElementById('range-output').innerHTML = document.getElementById('magnifier').value;
+  document.getElementById('resizer').addEventListener('change', function (e) {
+    e.target.parentNode.parentNode.style.setProperty('--thickness', e.target.value)
+    painter.lineWidth = e.target.value;
+  })
   viewport = document.documentElement.clientWidth || window.innerWidth;
   canvas = document.getElementById('canvas');
-  if (viewport > 320 && viewport <= 767) {
-    canvas.height = window.innerHeight / 3 * 2;
-    canvas.width = window.innerWidth - 8;
-  } else if (viewport > 767 && viewport <= 1023) {
-    canvas.height = window.innerHeight / 6 * 4;
-    canvas.width = window.innerWidth - 16;
-  } else if (viewport > 1024) {
-    canvas.height = window.innerHeight / 9 * 6;
-    canvas.width = window.innerWidth -24;
-  }
+    canvas.height = window.outerHeight;
+    canvas.width = window.innerWidth;
   painter = canvas.getContext('2d');
-  painter.lineWidth = document.getElementById('magnifier').value;
+  painter.lineWidth = document.getElementById('resizer').value;
   canvas.addEventListener('mousemove', handleMove);
   canvas.addEventListener('mousedown', handleDown);
   canvas.addEventListener('mouseup', handleUp);

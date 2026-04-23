@@ -61,11 +61,11 @@
     text-shadow: none;
 }
 
-input:not(:focus):not(:placeholder-shown):invalid {
+input:not([type="range"]):not(:focus):not(:placeholder-shown):invalid {
     border: 2px solid #E94434;
 }
 
-input:not(:focus):not(:placeholder-shown):valid  {
+input:not([type="range"]):not(:focus):not(:placeholder-shown):valid  {
     border: 2px solid #198754;
 }
 
@@ -89,6 +89,14 @@ body.hovered .main__tools a:hover {
 body.hovered .menu__item:hover {
     animation: aurora 1.5s linear infinite;
     background: linear-gradient(#19f0da, #fde82e, #e702cd);
+}
+
+#homeback, #cleaner {
+    transition: transform 0.3s ease-in-out;
+}
+
+#homeback:hover, #cleaner:hover {
+    transform: scale(1.1);
 }
 
 #loader {
@@ -311,111 +319,101 @@ body.hovered .menu__item:hover {
     color: #ea1a1a;
 }
 
-.picker {
-    background-color: rgba(255, 255, 255, 0.2);
-    margin: 0 auto;
-    text-align: center;
-    width: 47%;
-}
-
-.picker a,
-.picker button {
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: inline-block;
-    margin: 1rem;
-    width: 48px;
-    height: 48px;
-}
-
-.picker button[data-color=white] {
+.whiteboard button[data-color=white] {
     background: white;
 }
 
-.picker button[data-color=red] {
+.whiteboard button[data-color=red] {
     background: red;
 }
 
-.picker button[data-color=green] {
+.whiteboard button[data-color=green] {
     background: green;
 }
 
-.picker button[data-color=blue] {
+.whiteboard button[data-color=blue] {
     background: blue;
 }
 
-.picker button[data-color=orange] {
+.whiteboard button[data-color=orange] {
     background: orange;
 }
 
-.picker button[data-color=magenta] {
+.whiteboard button[data-color=magenta] {
     background: magenta;
 }
-
-.field {
-    text-align: center;
+#resizer::-webkit-slider-runnable-track {
+    box-sizing: border-box;
+    background-color: #2b2a33;
+    border-radius: 12px;
 }
 
-.field__canvas {
-    background-color: transparent;
-    border: 2px ridge #0a0a0a;
-    cursor: crosshair;
+#resizer::-moz-range-track {
+    box-sizing: border-box;
+    background-color: #2b2a33;
+    border-radius: 12px;
 }
 
-.taskbar {
-    margin: 0 auto;
-    width: 47%;
-}
-
-.taskbar a,
-.taskbar button {
-    background-color: #ccc;
-    border: 1px solid #ea1a1a;
-    cursor: pointer;
-    font-size: 1.2rem;
-    display: inline-block;
-    margin: 1rem;
-    text-transform: uppercase;
-    width: 50%;
-    height: 32px;
-}
-
-.taskbar__magnifier {
+#resizer::-webkit-slider-thumb {
     -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    width: 30%;
-    height: 24px;
-    background: #ccc;
-    outline: none;
-    margin: 0;
-    transition: opacity 0.3s;
+    width: 12px;
+    height: 12px;
+    border: none;
+    border-radius: 50%;
+    background: #99a1af;
+    box-shadow: 0 0 2px 4px rgb(100, 100, 100);
+    transition: 300ms;
 }
 
-.taskbar__magnifier::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    background: #ea1a1a;
-    cursor: pointer;
+#resizer::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border: none;
+    border-radius: 50%;
+    background: #99a1af;
+    box-shadow: 0 0 2px 4px rgb(100, 100, 100);
+    transition: 300ms;
 }
 
-.taskbar__magnifier::-moz-slider-thumb {
-    width: 25px;
-    height: 25px;
-    background: #ea1a1a;
-    cursor: pointer;
+#resizer:focus-visible {
+    outline-offset: 10px;
+    outline: 1px solid rgb(100, 100, 100);
 }
 
-.taskbar__output {
-    display: inline-block;
-    background-color: #ccc;
-    color: #0a0a0a;
-    font-size: 16px;
-    margin-right: 16px;
-    padding: 0 5px;
+#resizer:hover::-webkit-slider-thumb,
+#resizer:focus-visible::-webkit-slider-thumb {
+    box-shadow: 0 0 2px 8px rgb(100, 100, 100);
+}
+
+#resizer:hover::-moz-range-thumb,
+#resizer:focus-visible::-moz-range-thumb {
+    box-shadow: 0 0 2px 8px rgb(100, 100, 100);
+}
+
+#resizer:active::-webkit-slider-thumb {
+    width: 16px;
+    height: 16px;
+}
+
+#resizer:active::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+}
+
+#resizer:disabled::-webkit-slider-thumb {
+    box-shadow: 0 0 0 30px inset #2b2a33;
+}
+
+#resizer:disabled::-moz-range-thumb {
+    box-shadow: 0 0 0 30px inset #2b2a33;
+}
+
+#resizer:focus-visible::-webkit-slider-thumb {
+    outline: 2px solid #fff;
+}
+
+#resizer:focus-visible::-moz-range-thumb {
+    outline: 2px solid #fff;
 }
 
 .glass {

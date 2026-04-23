@@ -25,7 +25,7 @@
   <link href="css/main.min.css" rel="stylesheet">
   <link href="css/media.min.css" rel="stylesheet">
   <script src="js/vendors/particles.min.js" defer></script>
-  <script src="js/canvas.js"></script>
+  <script src="js/whiteboard.js" defer></script>
 </head>
 
 <body class="m-0 min-w-80 overflow-hidden" style="font-family: 'Space Grotesk', sans-serif;">
@@ -34,7 +34,7 @@
     <div class="flex flex-col items-center justify-center w-full mx-8">
         <header class="flex justify-between items-center w-full">
             <div class="w-1/3">
-                <a class="relative inline-block text-gray-500" href="index.html" title="Back home"
+                <a id="homeback" class="relative inline-block text-gray-500 z-20" href="index.html" title="Back home"
                     style="text-shadow: 0 0 3px rgb(100, 100, 100);"><span class="lnr lnr-home"></span></a>
             </div>
             <div class="w-1/3">
@@ -46,22 +46,31 @@
                 <p class="sr-only">Empty line</p>
             </div>
         </header>
-        <main class="relative flex flex-col items-center justify-center gap-8" style="min-height: 85dvh;">
-            <section class="picker">
-                <button data-color="white"></button>
-                <button data-color="red"></button>
-                <button data-color="green"></button>
-                <button data-color="blue"></button>
-                <button data-color="orange"></button>
-                <button data-color="magenta"></button>
+        <main class="whiteboard relative flex flex-col items-center justify-center gap-8" style="min-height: 85dvh;">
+            <section class="absolute">
+                <canvas class="relative bg-transparent cursor-crosshair" id="canvas"></canvas>
             </section>
-            <section class="field">
-                <canvas class="field__canvas" id="canvas"></canvas>
-            </section>
-            <section class="taskbar">
-                <input class="taskbar__magnifier" id="magnifier" type="range" value="4" min="1" max="7">
-                <span class="taskbar__output" id="range-output"></span>
-                <button class="taskbar__button" id="cleaner">Clean</button>
+            <section class="absolute left-140 flex flex-col items-center gap-4">
+                <div class="relative -top-15 rotate-270" style="--thickness: 4;">
+                    <div class="thumbs">
+                        <input class="appearance-none bg-none outline-0" id="resizer" type="range" min="1" max="10" value="4" step="1">
+                    </div>
+                </div>
+                <div class="relative mx-auto rounded-2xl text-center z-10 glass">
+                    <button class="block border-0 outline-0 rounded-[50%] my-4 mx-2 h-6 w-6 cursor-pointer" data-color="white"></button>
+                    <button class="block border-0 outline-0 rounded-[50%] my-4 mx-2 h-6 w-6 cursor-pointer" data-color="red"></button>
+                    <button class="block border-0 outline-0 rounded-[50%] my-4 mx-2 h-6 w-6 cursor-pointer" data-color="green"></button>
+                    <button class="block border-0 outline-0 rounded-[50%] my-4 mx-2 h-6 w-6 cursor-pointer" data-color="blue"></button>
+                    <button class="block border-0 outline-0 rounded-[50%] my-4 mx-2 h-6 w-6 cursor-pointer"
+                        data-color="orange"></button>
+                    <button class="block border-0 outline-0 rounded-[50%] my-4 mx-2 h-6 w-6 cursor-pointer"
+                        data-color="magenta"></button>
+                </div>
+                <div class="relative p-1 z-10">
+                    <button class="text-gray-500 cursor-pointer outline-0" style="text-shadow: 0 0 3px rgb(100, 100, 100);" title="Clean all" id="cleaner">
+                        <span class="lnr lnr-trash"></span>
+                    </button>
+                </div>
             </section>
         </main>
         <footer class="items-center">
