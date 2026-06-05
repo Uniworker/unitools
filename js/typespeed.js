@@ -1,3 +1,5 @@
+"use strict";
+
 const root = document
 const pick = root.querySelector.bind(root)
 const sc = pick('#sc').innerHTML = '60'

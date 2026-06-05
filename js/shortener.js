@@ -1,3 +1,5 @@
+"use strict";
+
 const settings = {
     "particles": {
         "number": {
@@ -110,7 +112,7 @@ function showParticles(settings) {
     return particlesJS('particles', settings)
 }
 
-const ItemCtrl = ( function() {
+const ItemCtrl = (function() {
   
   const Item = function(id, url, shortUrl) {
     this.id = id;

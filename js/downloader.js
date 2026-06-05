@@ -4,7 +4,6 @@ const root = document
 const pick = root.querySelector.bind(root)
 const pickAll = root.querySelectorAll.bind(root)
 const viewport = window.innerWidth || root.documentElement.clientWidth;
-const tools = pickAll('#tools li');
 const settings = {
     "particles": {
         "number": {
@@ -119,45 +118,5 @@ function showParticles(settings) {
 }
 
 window.onload = function () {
-    pick('#sound').volume = 0.25
     showParticles(settings)
-    let lastTouchTime = 0;
-    root.addEventListener('touchstart', function () {
-        lastTouchTime = new Date();
-        root.body.classList.remove('hovered');
-    }, true);
-    root.addEventListener('mousemove', function () {
-        if (new Date() - lastTouchTime < 500) return;
-        root.body.classList.add('hovered');
-    }, true);
-    pick('#menu').addEventListener('click', function (e) {
-        e.currentTarget.classList.toggle('--closed');
-        e.currentTarget.classList.toggle('--open');
-        let menuItem = function(i) {
-            showItem(i)
-        }
-        for (let i = 0; i < tools.length; i++) {
-            menuItem(i);
-        }
-    });
-};
-
-function showItem(item) {
-    let distance = item * (360 / tools.length);
-    if (pick('#menu').classList.contains('--open')) {
-        tools[item].firstChild.classList.remove('sr-only');
-        viewport > 767 ? tools[item].firstChild.style.cssText = 'height:64px;width:64px;margin-left:-200px;' : tools[item].firstChild.style.cssText = 'height:64px;width:64px;margin-left:-150px;';
-        setRotation(tools[item], distance);
-    } else {
-        setRotation(tools[item], '-360');
-        tools[item].firstChild.style.color = 'transparent';
-        setTimeout(function () {
-            tools[item].firstChild.classList.add('sr-only');
-        }, 500);
-    }
-}
-
-function setRotation(item, longitude) {
-    item.style.transform = "rotate(".concat(longitude, "deg)");
-    item.querySelector('a span').style.transform = "rotate(-".concat(longitude, "deg)");
 }

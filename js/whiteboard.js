@@ -7,163 +7,135 @@ var canvas = 0;
 var color = 'white';
 var colors = 0;
 var isPressed = false;
-//var viewport = 0;
-var t0,
-  t1 = 0;
+var t0, t1 = 0;
+const dpr = window.devicePixelRatio || 1;
 window.onload = function (e) {
-  showParticles(settings)
-  t0 = performance.now();
-  colors = document.querySelectorAll('button[data-color]');
-  colors[0].style.boxShadow = "0 0 2px 4px ".concat(color);
-  document.addEventListener('click', function (e) {
-    if (e.target.hasAttribute('data-color')) {
-      colors[0].style.boxShadow = 'none';
-      e.target.style.boxShadow = "0 0 2px 4px ".concat(e.target.dataset.color);
-      color = e.target.dataset.color;
-      cc.push(color);
-      for (var i = 0; i < colors.length; i++) {
-        if (cc.length > 1 && colors[i].dataset.color == cc[cc.length - 2]) colors[i].style.boxShadow = 'none';
-      }
-      if (cc.length > 2) cc.shift(color);
-      console.log(cc);
+    showParticles(settings)
+    t0 = performance.now();
+    colors = document.querySelectorAll('button[data-color]');
+    colors[0].style.boxShadow = "0 0 2px 4px ".concat(color);
+    document.addEventListener('click', function (e) {
+        if (e.target.hasAttribute('data-color')) {
+            colors[0].style.boxShadow = 'none';
+            e.target.style.boxShadow = "0 0 2px 4px ".concat(e.target.dataset.color);
+            color = e.target.dataset.color;
+            cc.push(color);
+            for (var i = 0; i < colors.length; i++) {
+                if (cc.length > 1 && colors[i].dataset.color == cc[cc.length - 2]) colors[i].style.boxShadow = 'none';
+            }
+            if (cc.length > 2) cc.shift(color);
+            console.log(cc);
+        }
+        if (e.target.closest('#cleaner')) painter.clearRect(0, 0, canvas.width, canvas.height);
+    });
+    document.getElementById('resizer').addEventListener('change', function (e) {
+        e.target.parentNode.parentNode.style.setProperty('--thickness', e.target.value)
+        painter.lineWidth = e.target.value;
+    })
+    canvas = document.getElementById('canvas');
+    canvas.style.width = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+    canvas.width = Math.round(window.innerWidth * dpr);
+    canvas.height = Math.round(window.innerHeight * dpr);
+    painter = canvas.getContext('2d');
+    painter.scale(dpr, dpr);
+    painter.lineWidth = document.getElementById('resizer').value;
+    canvas.addEventListener('mousemove', handleMove);
+    canvas.addEventListener('mousedown', handleDown);
+    canvas.addEventListener('mouseup', handleUp);
+    canvas.addEventListener('touchstart', handleStart, false);
+    canvas.addEventListener('touchend', handleEnd, false);
+    canvas.addEventListener('touchcancel', handleCancel, false);
+    canvas.addEventListener('touchmove', handleTouchMove, false);
+    function rect() { return canvas.getBoundingClientRect(); }
+    function mousePosFromEvent(e) {
+        const r = rect();
+        return { x: e.clientX - r.left, y: e.clientY - r.top };
     }
-    if (e.target.closest('#cleaner')) painter.clearRect(0, 0, canvas.width, canvas.height);
-  });
-  document.getElementById('resizer').addEventListener('change', function (e) {
-    e.target.parentNode.parentNode.style.setProperty('--thickness', e.target.value)
-    painter.lineWidth = e.target.value;
-  })
-  viewport = document.documentElement.clientWidth || window.innerWidth;
-  canvas = document.getElementById('canvas');
-    canvas.height = window.outerHeight;
-    canvas.width = window.innerWidth;
-  painter = canvas.getContext('2d');
-  painter.lineWidth = document.getElementById('resizer').value;
-  canvas.addEventListener('mousemove', handleMove);
-  canvas.addEventListener('mousedown', handleDown);
-  canvas.addEventListener('mouseup', handleUp);
-  canvas.addEventListener('touchstart', handleStart, false);
-  canvas.addEventListener('touchend', handleEnd, false);
-  canvas.addEventListener('touchcancel', handleCancel, false);
-  canvas.addEventListener('touchmove', handleTouchMove, false);
-  function handleMove(e) {
-    if (isPressed) {
-      painter.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
-      painter.strokeStyle = color;
-      painter.stroke();
+    function touchPos(t) {
+        const r = rect();
+        return { x: t.clientX - r.left, y: t.clientY - r.top };
     }
-  }
-  function handleDown(e) {
-    isPressed = true;
-    painter.beginPath();
-    painter.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
-  }
-  function handleUp() {
-    isPressed = false;
-  }
-  function handleStart(e) {
-    var changes = e.changedTouches;
-    for (var i = 0; i < changes.length; i++) {
-      if (isValidTouch(changes[i])) {
-        e.preventDefault();
-        touches.push(copyTouch(changes[i]));
+    function handleDown(e) {
+        isPressed = true;
+        const p = mousePosFromEvent(e);
         painter.beginPath();
-        painter.fillStyle = color;
-        painter.fill();
-      }
+        painter.moveTo(p.x, p.y);
     }
-  }
-  function handleTouchMove(e) {
-    var changes = e.changedTouches;
-    var offset = findPos(canvas);
-    for (var i = 0; i < changes.length; i++) {
-      if (isValidTouch(changes[i])) {
-        e.preventDefault();
-        var idx = ongoingTouchIndexById(changes[i].identifier);
-        if (idx >= 0) {
-          painter.beginPath();
-          painter.moveTo(touches[idx].clientX - offset.x, touches[idx].clientY - offset.y);
-          painter.lineTo(touches[i].clientX - offset.x, touches[i].clientY - offset.y);
-          painter.strokeStyle = color;
-          painter.stroke();
-          touches.splice(idx, 1, copyTouch(touches[i]));
+    function handleMove(e) {
+        if (!isPressed) return;
+        const p = mousePosFromEvent(e);
+        painter.lineTo(p.x, p.y);
+        painter.strokeStyle = color;
+        painter.stroke();
+    }
+    function handleUp() {
+        isPressed = false;
+    }
+    function handleStart(e) {
+        const changes = e.changedTouches;
+        for (let i = 0; i < changes.length; i++) {
+            const t = changes[i];
+            e.preventDefault();
+            touches.push(copyTouch(t));
+            const p = touchPos(t);
+            painter.beginPath();
+            painter.moveTo(p.x, p.y);
         }
-      }
     }
-  }
-  function handleEnd(e) {
-    var changes = e.changedTouches;
-    var offset = findPos(canvas);
-    for (var i = 0; i < changes.length; i++) {
-      if (isValidTouch(changes[i])) {
-        e.preventDefault();
-        var idx = ongoingTouchIndexById(changes[i].identifier);
-        if (idx >= 0) {
-          painter.lineWidth = 4;
-          painter.fillStyle = color;
-          painter.beginPath();
-          painter.moveTo(touches[idx].clientX - offset.x, touches[idx].clientY - offset.y);
-          painter.lineTo(touches[i].clientX - offset.x, touches[i].clientY - offset.y);
-          touches.splice(i, 1);
+    function handleTouchMove(e) {
+        const changes = e.changedTouches;
+        for (let i = 0; i < changes.length; i++) {
+            const t = changes[i];
+            const idx = ongoingTouchIndexById(t.identifier);
+            if (idx >= 0) {
+                e.preventDefault();
+                const prev = touches[idx];
+                const from = { x: prev.clientX - rect().left, y: prev.clientY - rect().top };
+                const to = touchPos(t);
+                painter.beginPath();
+                painter.moveTo(from.x, from.y);
+                painter.lineTo(to.x, to.y);
+                painter.strokeStyle = color;
+                painter.stroke();
+                touches.splice(idx, 1, copyTouch(t));
+            }
         }
-      }
     }
-  }
-  function handleCancel(e) {
-    e.preventDefault();
-    var changes = e.changedTouches;
-    for (var i; i < changes.length; i++) {
-      touches.splice(i, 1);
+    function handleEnd(e) {
+        const changes = e.changedTouches;
+        for (let i = 0; i < changes.length; i++) {
+            const t = changes[i];
+            const idx = ongoingTouchIndexById(t.identifier);
+            if (idx >= 0) {
+                e.preventDefault();
+                touches.splice(idx, 1);
+            }
+        }
     }
-  }
-  function copyTouch(touch) {
-    return {
-      identifier: touch.identifier,
-      clientX: touch.clientX,
-      clientY: touch.clientY
-    };
-  }
-  function ongoingTouchIndexById(idToFind) {
-    for (var i = 0; i < touches.length; i++) {
-      var id = touches[i].identifier;
-      if (id == idToFind) return i;
+    function handleCancel(e) {
+        e.preventDefault();
+        var changes = e.changedTouches;
+        for (var i; i < changes.length; i++) {
+            touches.splice(i, 1);
+        }
     }
-    return -1;
-  }
-  function isValidTouch(touch) {
-    var curleft = 0,
-      curtop = 0;
-    var offset = 0;
-    if (canvas.offsetParent) {
-      do {
-        curleft += canvas.offsetLeft;
-        curtop += canvas.offsetTop;
-      } while (touch == canvas.offsetParent);
-      offset = {
-        x: curleft - document.body.scrollLeft,
-        y: curtop - document.body.scrollTop
-      };
-      if (touch.clientX - offset.x > 0 && touch.clientX - offset.x < parseFloat(canvas.width) && touch.clientY - offset.y > 0 && touch.clientY - offset.y < parseFloat(canvas.height)) {
-        return true;
-      } else return false;
+    function copyTouch(touch) {
+        return {
+            identifier: touch.identifier,
+            clientX: touch.clientX,
+            clientY: touch.clientY
+        };
     }
-  }
-  function findPos(obj) {
-    var curleft = 0,
-      curtop = 0;
-    if (obj.offsetParent) {
-      do {
-        curleft += obj.offsetLeft;
-        curtop += obj.offsetTop;
-      } while (obj == obj.offsetParent);
-      return {
-        x: curleft - document.body.scrollLeft,
-        y: curtop - document.body.scrollTop
-      };
+    function ongoingTouchIndexById(idToFind) {
+        for (var i = 0; i < touches.length; i++) {
+            var id = touches[i].identifier;
+            if (id == idToFind) return i;
+        }
+        return -1;
     }
-  }
-  t1 = performance.now();
-  console.log("Loaded for ".concat(t1 - t0));
+    t1 = performance.now();
+    console.log("Loaded for ".concat(t1 - t0));
 };
 const settings = {
     "particles": {

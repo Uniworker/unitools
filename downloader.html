@@ -1,0 +1,221 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="content-language" content="en">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <title>Download from YouTube, Instagram, TikTok, SoundCloud
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Uniworker">
+    <meta name="keywords" content="downloader, media, youtube, instagram, tiktok, soundcloud">
+    <meta name="description" content="Free online media downloader for everyone to save your favorite content">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta property="og:locale" content="en">
+    <meta property="og:title" content="Media Downloader by UniTools">
+    <meta property="og:description" content="Free online media downloader for everyone to save your favorite content">
+    <meta property="og:type" content="online service">
+    <meta property="og:url" content="https://uniworker.github.io/unitools/downloader.html">
+    <meta property="og:image" content="tile-wide.png">
+    <meta property="og:image:width" content="558" />
+    <meta property="og:image:height" content="270" />
+    <meta property="og:site_name" content="Media Downloader by UniTools">
+    <link type="image/x-icon" href="favicon.ico" />
+    <link href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
+    <link href="css/main.min.css" rel="stylesheet">
+    <link href="css/media.min.css" rel="stylesheet">
+    <script src="js/vendors/particles.min.js" defer></script>
+    <script src="js/downloader.js" defer></script>
+</head>
+
+<body class="m-0 min-w-80 overflow-hidden" style="font-family: 'Space Grotesk', sans-serif;">
+    <div id="particles" class="fixed inset-0 h-full w-full"></div>
+    <div class="flex items-center justify-center h-dvh overflow-hidden"
+        style="background: radial-gradient(circle, #111 20%, #000 80%) no-repeat;">
+        <div class="flex flex-col items-center justify-center w-full mx-8">
+            <header class="flex justify-between items-center w-full">
+                <div class="w-1/3">
+                    <a id="homeback" class="relative inline-block text-gray-500 z-20" href="index.html"
+                        title="Back home" style="text-shadow: 0 0 3px rgb(100, 100, 100);"><span
+                            class="lnr lnr-home"></span></a>
+                </div>
+                <div class="w-1/3">
+                    <h1 class="text-gray-600 text-center text-3xl uppercase tracking-wider select-none"
+                        style="text-shadow: 0 0 3px rgb(100, 100, 100);"><a href="index.html" title="Back home">Media 🌐
+                            Downloader</a></h1>
+                    <p class="text-gray-500 text-center text-sm select-none"
+                        style="text-shadow: 0 0 3px rgb(100, 100, 100);">Save your favorite content from anywhere</p>
+                </div>
+                <div class="w-1/3">
+                    <p class="sr-only">Empty line</p>
+                </div>
+            </header>
+            <main class="downloader relative flex flex-col items-center justify-center gap-8"
+                style="min-height: 85dvh;">
+                <div class="relative min-w-sm max-w-5xl mx-0 my-auto p-0">
+                    <input type="radio" name="tabs" id="yt" class="sr-only" checked>
+                    <label for="yt" class="glass inline-block m-[0_0_-1px] p-8 text-center relative overflow-hidden"
+                        title="Download from YouTube"><i
+                            class="inline-block w-12 bg-[url('/icons/yt.svg')] bg-no-repeat bg-center bg-contain select-none">&nbsp;</i></label>
+                    <input type="radio" name="tabs" id="inst" class="sr-only" checked>
+                    <label for="inst" class="glass inline-block m-[0_0_-1px] p-8 text-center relative overflow-hidden"
+                        title="Download from Instagram"><i
+                            class="inline-block w-12 bg-[url('/icons/ins.svg')] bg-no-repeat bg-center bg-contain select-none">&nbsp;</i></label>
+                    <input type="radio" name="tabs" id="tt" class="sr-only" checked>
+                    <label for="tt" class="glass inline-block m-[0_0_-1px] p-8 text-center relative overflow-hidden"
+                        title="Download from TikTok"><i
+                            class="inline-block w-12 bg-[url('/icons/tt.svg')] bg-no-repeat bg-center bg-contain select-none">&nbsp;</i></label>
+                    <input type="radio" name="tabs" id="pin" class="sr-only" checked>
+                    <label for="pin" class="glass inline-block m-[0_0_-1px] p-8 text-center relative overflow-hidden"
+                        title="Download from Pinterest"><i
+                            class="inline-block w-12 bg-[url('/icons/pin.svg')] bg-no-repeat bg-center bg-contain select-none">&nbsp;</i></label>
+                    <input type="radio" name="tabs" id="vm" class="sr-only" checked>
+                    <label for="vm" class="glass inline-block m-[0_0_-1px] p-8 text-center relative overflow-hidden"
+                        title="Download from Vimeo"><i
+                            class="inline-block w-12 bg-[url('/icons/vm.svg')] bg-no-repeat bg-center bg-contain select-none">&nbsp;</i></label>
+                    <input type="radio" name="tabs" id="spf" class="sr-only" checked>
+                    <label for="spf" class="glass inline-block m-[0_0_-1px] p-8 text-center relative overflow-hidden"
+                        title="Download from Spotify"><i
+                            class="inline-block w-12 bg-[url('/icons/spf.svg')] bg-no-repeat bg-center bg-contain select-none">&nbsp;</i></label>
+                    <input type="radio" name="tabs" id="sc" class="sr-only" checked>
+                    <label for="sc" class="glass inline-block m-[0_0_-1px] p-8 text-center relative overflow-hidden"
+                        title="Download from SoundCloud"><i
+                            class="inline-block w-12 bg-[url('/icons/sc.svg')] bg-no-repeat bg-center bg-contain select-none">&nbsp;</i></label>
+                    <section class="yt glass min-w-80 min-h-52 w-full -mt-[5px] p-8">
+                        <h2 class="text-2xl text-gray-100 mb-8 text-center" style="text-shadow: 0 0 3px rgb(255,255,255);">Download video from YouTube fast, safely and free</h2>
+                        <form action="" name="ytSender" autocomplete="off" class="w-full relative">
+                            <input type="url"
+                                class="border-none bg-gray-100 h-12 w-[70%] pl-3 rounded-l-2xl shadow-md shadow-blue-500/50"
+                                id="ytURL" placeholder="https://youtu.be/kJQP7kiw5Fk?si=Qec8JTTasNHvfFOb" />
+                            <button
+                                class="absolute top-0 left-[70%] border-none cursor-pointer bg-blue-500 h-12 w-[30%] rounded-r-2xl shadow-md shadow-blue-500/50 text-gray-100 tracking-wide uppercase"
+                                id="ytSubmit">Prepare file</button>
+                        </form>
+                        <p class="main__error" id="error">Paste a valid link, please!</p>
+                        <ul class="main__list" id="list"></ul>
+                        <div class="flex justify-center gap-2 text-gray-500 mb-8 text-center">
+                            <span class="lnr lnr-question-circle"></span>
+                            <p>Please note that copyrighted content may not be downloaded</p>
+                        </div>
+                    </section>
+                    <section class="ins glass min-w-80 min-h-52 w-full -mt-[5px] p-8">
+                        <h2 class="text-2xl text-gray-100 mb-8 text-center" style="text-shadow: 0 0 3px rgb(255,255,255);">Download post or reel from Instagram fast, safely and free</h2>
+                        <form action="" name="insSender" autocomplete="off" class="w-full relative">
+                            <input type="url" class="border-none bg-gray-100 h-12 w-[70%] pl-3 rounded-l-2xl shadow-md shadow-blue-500/50"
+                                id="insURL" placeholder="https://www.instagram.com/reel/DW3sLTPiA0z/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" />
+                            <button
+                                class="absolute top-0 left-[70%] border-none cursor-pointer bg-blue-500 h-12 w-[30%] rounded-r-2xl shadow-md shadow-blue-500/50 text-gray-100 tracking-wide uppercase"
+                                id="insSubmit">Prepare file</button>
+                        </form>
+                        <p class="main__error" id="error">Paste a valid link, please!</p>
+                        <ul class="main__list" id="list"></ul>
+                        <div class="flex justify-center gap-2 text-gray-500 mb-8 text-center">
+                            <span class="lnr lnr-question-circle"></span>
+                            <p>Please note that private content may not be downloaded</p>
+                        </div>
+                    </section>
+                    <section class="tt glass min-w-80 min-h-52 w-full -mt-[5px] p-8">
+                        <h2 class="text-2xl text-gray-100 mb-8 text-center" style="text-shadow: 0 0 3px rgb(255,255,255);">Download video from TikTok fast, safely and free</h2>
+                        <form action="" name="ttSender" autocomplete="off" class="w-full relative">
+                            <input type="url" class="border-none bg-gray-100 h-12 w-[70%] pl-3 rounded-l-2xl shadow-md shadow-blue-500/50"
+                                id="ttURL"
+                                placeholder="https://www.tiktok.com/@user/video/1234567890" />
+                            <button
+                                class="absolute top-0 left-[70%] border-none cursor-pointer bg-blue-500 h-12 w-[30%] rounded-r-2xl shadow-md shadow-blue-500/50 text-gray-100 tracking-wide uppercase"
+                                id="ttSubmit">Prepare file</button>
+                        </form>
+                        <p class="main__error" id="error">Paste a valid link, please!</p>
+                        <ul class="main__list" id="list"></ul>
+                        <div class="flex justify-center gap-2 text-gray-500 mb-8 text-center">
+                            <span class="lnr lnr-question-circle"></span>
+                            <p>Please note that private content may not be downloaded</p>
+                        </div>
+                    </section>
+                    <section class="pin glass min-w-80 min-h-52 w-full -mt-[5px] p-8">
+                        <h2 class="text-2xl text-gray-100 mb-8 text-center" style="text-shadow: 0 0 3px rgb(255,255,255);">Download image from Pinterest fast, safely and free</h2>
+                        <form action="" name="pinSender" autocomplete="off" class="w-full relative">
+                            <input type="url" class="border-none bg-gray-100 h-12 w-[70%] pl-3 rounded-l-2xl shadow-md shadow-blue-500/50"
+                                id="pinURL"
+                                placeholder="https://pin.it/1RoyienOv"/>
+                            <button
+                                class="absolute top-0 left-[70%] border-none cursor-pointer bg-blue-500 h-12 w-[30%] rounded-r-2xl shadow-md shadow-blue-500/50 text-gray-100 tracking-wide uppercase"
+                                id="pinSubmit">Prepare file</button>
+                        </form>
+                        <p class="main__error" id="error">Paste a valid link, please!</p>
+                        <ul class="main__list" id="list"></ul>
+                        <div class="flex justify-center gap-2 text-gray-500 mb-8 text-center">
+                            <span class="lnr lnr-question-circle"></span>
+                            <p>Please note that private content may not be downloaded</p>
+                        </div>
+                    </section>
+                    <section class="vm glass min-w-80 min-h-52 w-full -mt-[5px] p-8">
+                        <h2 class="text-2xl text-gray-100 mb-8 text-center" style="text-shadow: 0 0 3px rgb(255,255,255);">Download video from Vimeo fast, safely and free</h2>
+                        <form action="" name="vmSender" autocomplete="off" class="w-full relative">
+                            <input type="url" class="border-none bg-gray-100 h-12 w-[70%] pl-3 rounded-l-2xl shadow-md shadow-blue-500/50"
+                                id="vmURL" placeholder="https://vimeo.com/1192428674?fl=pl&fe=sh" />
+                            <button
+                                class="absolute top-0 left-[70%] border-none cursor-pointer bg-blue-500 h-12 w-[30%] rounded-r-2xl shadow-md shadow-blue-500/50 text-gray-100 tracking-wide uppercase"
+                                id="vmSubmit">Prepare file</button>
+                        </form>
+                        <p class="main__error" id="error">Paste a valid link, please!</p>
+                        <ul class="main__list" id="list"></ul>
+                        <div class="flex justify-center gap-2 text-gray-500 mb-8 text-center">
+                            <span class="lnr lnr-question-circle"></span>
+                            <p>Please note that copyrighted content may not be downloaded</p>
+                        </div>
+                    </section>
+                    <section class="spf glass min-w-80 min-h-52 w-full -mt-[5px] p-8">
+                        <h2 class="text-2xl text-gray-100 mb-8 text-center" style="text-shadow: 0 0 3px rgb(255,255,255);">Download high quality MP3 from Spotify fast, safely and free</h2>
+                        <form action="" name="spfSender" autocomplete="off" class="w-full relative">
+                            <input type="url" class="border-none bg-gray-100 h-12 w-[70%] pl-3 rounded-l-2xl shadow-md shadow-blue-500/50"
+                                id="spfURL" placeholder="https://open.spotify.com/track/5nhWh0Sd0gtQTXJT7WQ14Y?si=3652f1e1430d40d4" />
+                            <button
+                                class="absolute top-0 left-[70%] border-none cursor-pointer bg-blue-500 h-12 w-[30%] rounded-r-2xl shadow-md shadow-blue-500/50 text-gray-100 tracking-wide uppercase"
+                                id="spfSubmit">Prepare file</button>
+                        </form>
+                        <p class="main__error" id="error">Paste a valid link, please!</p>
+                        <ul class="main__list" id="list"></ul>
+                        <div class="flex justify-center gap-2 text-gray-500 mb-8 text-center">
+                            <span class="lnr lnr-question-circle"></span>
+                            <p>Please note that copyrighted content may not be downloaded</p>
+                        </div>
+                    </section>
+                    <section class="sc glass min-w-80 min-h-52 w-full -mt-[5px] p-8">
+                        <h2 class="text-2xl text-gray-100 mb-8 text-center" style="text-shadow: 0 0 3px rgb(255,255,255);">Get high quality
+                            MP3 from SoundCloud fast, safely and free</h2>
+                        <form action="" name="scSender" autocomplete="off" class="w-full relative">
+                            <input type="url" class="border-none bg-gray-100 h-12 w-[70%] pl-3 rounded-l-2xl shadow-md shadow-blue-500/50"
+                                id="scURL" placeholder="https://soundcloud.com/altaremusic/byermx1?si=9dc89afc693d4bafa307ebd512565f8a&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" />
+                            <button
+                                class="absolute top-0 left-[70%] border-none cursor-pointer bg-blue-500 h-12 w-[30%] rounded-r-2xl shadow-md shadow-blue-500/50 text-gray-100 tracking-wide uppercase"
+                                id="scSubmit">Prepare file</button>
+                        </form>
+                        <p class="main__error" id="error">Paste a valid link, please!</p>
+                        <ul class="main__list" id="list"></ul>
+                        <div class="flex justify-center gap-2 text-gray-500 mb-8 text-center">
+                            <span class="lnr lnr-question-circle"></span>
+                            <p>Please note that copyrighted content may not be downloaded</p>
+                        </div>
+                    </section>
+                </div>
+            </main>
+            <footer class="items-center">
+                <p class="relative text-base uppercase"><span class="text-gray-600 select-none">©2026 |
+                        Created by </span><a
+                        class="inline-block bg-gradient-to-r from-red-500 to-yellow-500 bg-clip-text text-transparent"
+                        href="https://www.youtube.com/channel/UC-ii73NUvqnJhGpieMlMstQ" target="_blank"
+                        title="Follow me">UNIWORKER</a>
+                </p>
+            </footer>
+        </div>
+    </div>
+    <script>
+        window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+        ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+    </script>
+    <script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>
