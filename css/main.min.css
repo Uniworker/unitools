@@ -481,6 +481,8 @@ body.hovered .menu__item:hover {
     border-top-right-radius: 0;
 }
 
-.downloader .lnr-question-circle:before {
+.downloader .lnr-question-circle:before,
+.shortener .lnr-question-circle:before,
+.qr .lnr-question-circle:before {
     font-size: 1.2rem;
 }

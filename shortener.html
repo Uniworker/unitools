@@ -44,8 +44,8 @@
                     <p class="sr-only">Empty line</p>
                 </div>
             </header>
-            <main class="relative flex flex-col items-center justify-center gap-8" style="min-height: 85dvh;">
-                <div class="glass min-w-80 min-h-52 w-[45dvw] p-8">
+            <main class="shortener relative flex flex-col items-center justify-center gap-8" style="min-height: 85dvh;">
+                <div class="glass min-w-80 min-h-52 w-[50dvw] p-8">
                     <h2 class="text-2xl text-gray-100 mb-8 text-center" style="text-shadow: 0 0 3px rgb(255,255,255);">Paste a valid link below</h2>
                     <form action="" name="sender" autocomplete="off" class="w-full relative">
                         <input type="url" class="border-none bg-gray-100 h-12 w-[70%] pl-3 rounded-l-2xl shadow-md shadow-blue-500/50"
@@ -56,6 +56,10 @@
                     </form>
                     <p class="main__error" id="error">Paste a valid link, please!</p>
                     <ul class="main__list" id="list"></ul>
+                    <div class="flex justify-center gap-2 text-gray-500 mb-8 text-center">
+                        <span class="lnr lnr-question-circle"></span>
+                        <p>Please note that any suspicious links may not be shortened</p>
+                    </div>
                 </div>
             </main>
             <footer class="items-center">
