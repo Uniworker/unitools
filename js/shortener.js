@@ -141,9 +141,8 @@ const ItemCtrl = (function() {
         ID = 0;
       }
       let shortLink = await ItemCtrl.generateLink(link)
-      newItem = new Item(ID, link, shortLink);
-      data.items.push(newItem);
-      return newItem;
+      data.items.push(new Item(ID, link, shortLink));
+      return new Item(ID, link, shortLink);
     },
     generateLink: async function (url) {
       return await fetch('https://url-shortener-service.p.rapidapi.com/shorten', {

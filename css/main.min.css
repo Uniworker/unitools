@@ -319,6 +319,13 @@ body.hovered .menu__item:hover {
     display: block;
 }
 
+#qrdownload:hover {
+    scale: 1.1;
+}
+#qrcopy:hover {
+    scale: 1.1;
+}
+
 .typetest__content {
     text-justify: justify;
     text-shadow: 1px 1px 5px #e4e4e4;

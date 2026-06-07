@@ -65,8 +65,11 @@
                             QR</button>
                     </label>
                 </div>
-                <div class="glass min-w-80 w-[45dvw] p-8 sr-only">
-                    <canvas id="qrField" class="h-[300px] w-[300px] m-auto"></canvas>
+                <div class="glass relative min-w-80 w-[45dvw] p-8 hidden" aria-live="polite">
+                    <p class="text-lg text-gray-100 mb-4 text-center">Use buttons to save or copy the QR</p>
+                    <canvas id="qrfield" class="h-[250px] w-[250px] m-auto rounded-lg" aria-label="Generated QR code"></canvas>
+                    <a id="qrdownload" href="#" download="qrcode.png" class="absolute top-[50%] left-[10%] text-gray-100" title="Download QR Code"><span class="lnr lnr-enter-down"></span></a>
+                    <a id="qrcopy" href="#" class="absolute top-[50%] left-[85%] text-gray-100" title="Copy QR Code"><span class="lnr lnr-layers"></span></a>
                 </div>
             </main>
             <footer class="items-center">

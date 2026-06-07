@@ -123,8 +123,31 @@ window.onload = function() {
         url.match(urlRegex) ? pick('#qrmaker').disabled = false : pick('#qrmaker').disabled = true
     })
     pick('#qrmaker').addEventListener('click', function(e) {
-        pick('#qrField').parentNode.classList.remove('sr-only')
+        const link = pick('#url').value.trim()
+        if (!link) {
+            pick('#qrfield').parentNode.classList.add('hidden')
+            return
+        }
+        pick('#qrfield').parentNode.classList.remove('hidden')
         setQRCode()
+    })
+    pick('#qrdownload').addEventListener('click', function(e) {
+        const dataURL = pick('#qrfield').toDataURL('image/png')
+        pick('#qrdownload').href = dataURL
+    })
+    pick('#qrcopy').addEventListener('click', async function(e) {
+        if (!navigator.clipboard || !window.ClipboardItem) {
+            alert('Copy to clipboard not supported in this browser.');
+            return;
+        }
+        pick('#qrfield').toBlob(async function (blob) {
+            try {
+                await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+                alert('QR code image copied to clipboard!');
+            } catch (err) {
+                alert('Failed to copy image: ' + (err && err.message ? err.message : err));
+            }
+        }, 'image/png');
     })
 }
 
@@ -133,7 +156,7 @@ function setQRCode() {
     if (link) {
         const qr = new QRious({
             background: '#fef9e7',
-            element: pick('#qrField'),
+            element: pick('#qrfield'),
             foreground: '#0a0a0a',
             size: 300,
             value: link
